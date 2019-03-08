@@ -1,0 +1,29 @@
+[local_host]
+localhost
+
+[all]
+jumpserver01 ansible_host=10.0.33.200 ansible_user=vagrant ansible_private_key_file=/Users/koenvantomme/Desktop/cars2019/cars/.vagrant/machines/jumpserver01/virtualbox/private_key
+kafka01 ansible_host=10.0.33.201 ansible_user=vagrant ansible_private_key_file=/Users/koenvantomme/Desktop/cars2019/cars/.vagrant/machines/kafka01/virtualbox/private_key 
+kafka02 ansible_host=10.0.33.202 ansible_user=vagrant ansible_private_key_file=/Users/koenvantomme/Desktop/cars2019/cars/.vagrant/machines/kafka02/virtualbox/private_key 
+kafka03 ansible_host=10.0.33.203 ansible_user=vagrant ansible_private_key_file=/Users/koenvantomme/Desktop/cars2019/cars/.vagrant/machines/kafka03/virtualbox/private_key 
+kafka04 ansible_host=10.0.33.204 ansible_user=vagrant ansible_private_key_file=/Users/koenvantomme/Desktop/cars2019/cars/.vagrant/machines/kafka04/virtualbox/private_key 
+
+[kafka]
+jumpserver01
+kafka01
+kafka02
+kafka03
+kafka04
+
+
+[local_host:vars]
+ssh_key_filename="ansible_rsa"
+remote_machine_username="root"
+remote_machine_password="xxxxxxxxxxxxxxxxxxxxxx"
+
+
+[ansible_setup_passwordless]
+kafka01
+kafka02 
+kafka03  
+kafka04 

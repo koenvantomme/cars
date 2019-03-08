@@ -1,0 +1,3 @@
+users_ssh_key_distribution:
+  - 'ansible'
+  - 'kafka'

@@ -1,0 +1,22 @@
+---
+_ssh_keys_distribution:
+  - host: 'jumpserver01'
+    keys:
+      - user: 'ansible'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpHHGtEswIP3vb4xS50FnnB5nzy20KsKuW8jV6APEI8WJkSegXFjn1TiN6riFlSm7wGNIWJYDQSf6wkwJaK8abABdDDlaZwEkQJIfv4BUJhiRBCc5EdH3Vy2oHf8tGNwk2uut01/u7DX0lJvpq2TUmmx8ev4+nvTWOo7Lh/F3LAAlBNV0XxUolLxG3Jaqw/eg126eVyiNAKWLczUKuatJ+fF7VelO6wftHpeqelfGBy/3iOcROrswz2Cc6qQg7uO2Qxf7XzeSlOSAGTBnPWek5EhbRqqDNHj8YCx8a15yqxFN0asbEQmFoXvqpjtTfq5LR4EXau6CZ1dHOz+UHTx9V koenvantomme@Koens-MacBook-Pro.local'
+  - host: 'kafka01'
+    keys:
+      - user: 'ansible'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpHHGtEswIP3vb4xS50FnnB5nzy20KsKuW8jV6APEI8WJkSegXFjn1TiN6riFlSm7wGNIWJYDQSf6wkwJaK8abABdDDlaZwEkQJIfv4BUJhiRBCc5EdH3Vy2oHf8tGNwk2uut01/u7DX0lJvpq2TUmmx8ev4+nvTWOo7Lh/F3LAAlBNV0XxUolLxG3Jaqw/eg126eVyiNAKWLczUKuatJ+fF7VelO6wftHpeqelfGBy/3iOcROrswz2Cc6qQg7uO2Qxf7XzeSlOSAGTBnPWek5EhbRqqDNHj8YCx8a15yqxFN0asbEQmFoXvqpjtTfq5LR4EXau6CZ1dHOz+UHTx9V koenvantomme@Koens-MacBook-Pro.local'
+  - host: 'kafka02'
+    keys:
+      - user: 'ansible'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpHHGtEswIP3vb4xS50FnnB5nzy20KsKuW8jV6APEI8WJkSegXFjn1TiN6riFlSm7wGNIWJYDQSf6wkwJaK8abABdDDlaZwEkQJIfv4BUJhiRBCc5EdH3Vy2oHf8tGNwk2uut01/u7DX0lJvpq2TUmmx8ev4+nvTWOo7Lh/F3LAAlBNV0XxUolLxG3Jaqw/eg126eVyiNAKWLczUKuatJ+fF7VelO6wftHpeqelfGBy/3iOcROrswz2Cc6qQg7uO2Qxf7XzeSlOSAGTBnPWek5EhbRqqDNHj8YCx8a15yqxFN0asbEQmFoXvqpjtTfq5LR4EXau6CZ1dHOz+UHTx9V koenvantomme@Koens-MacBook-Pro.local'
+  - host: 'kafka03'
+    keys:
+      - user: 'ansible'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpHHGtEswIP3vb4xS50FnnB5nzy20KsKuW8jV6APEI8WJkSegXFjn1TiN6riFlSm7wGNIWJYDQSf6wkwJaK8abABdDDlaZwEkQJIfv4BUJhiRBCc5EdH3Vy2oHf8tGNwk2uut01/u7DX0lJvpq2TUmmx8ev4+nvTWOo7Lh/F3LAAlBNV0XxUolLxG3Jaqw/eg126eVyiNAKWLczUKuatJ+fF7VelO6wftHpeqelfGBy/3iOcROrswz2Cc6qQg7uO2Qxf7XzeSlOSAGTBnPWek5EhbRqqDNHj8YCx8a15yqxFN0asbEQmFoXvqpjtTfq5LR4EXau6CZ1dHOz+UHTx9V koenvantomme@Koens-MacBook-Pro.local'
+  - host: 'kafka04'
+    keys:
+      - user: 'ansible'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpHHGtEswIP3vb4xS50FnnB5nzy20KsKuW8jV6APEI8WJkSegXFjn1TiN6riFlSm7wGNIWJYDQSf6wkwJaK8abABdDDlaZwEkQJIfv4BUJhiRBCc5EdH3Vy2oHf8tGNwk2uut01/u7DX0lJvpq2TUmmx8ev4+nvTWOo7Lh/F3LAAlBNV0XxUolLxG3Jaqw/eg126eVyiNAKWLczUKuatJ+fF7VelO6wftHpeqelfGBy/3iOcROrswz2Cc6qQg7uO2Qxf7XzeSlOSAGTBnPWek5EhbRqqDNHj8YCx8a15yqxFN0asbEQmFoXvqpjtTfq5LR4EXau6CZ1dHOz+UHTx9V koenvantomme@Koens-MacBook-Pro.local'

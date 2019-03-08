@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/Users/koenvantomme/Desktop/cars2019/cars","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}

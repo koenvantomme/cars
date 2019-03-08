@@ -1,0 +1,131 @@
+# cd /Users/koenvantomme/Desktop/cars2019/cars
+# ansible-playbook prepare-hosts/prepare-hosts.yml
+# https://everythingshouldbevirtual.com/ansible-ssh-key-distribution-for-password-less-ssh/
+# Correct permissions for security : https://gist.github.com/grenade/6318301
+---
+- hosts: kafka
+  become: true
+  vars:
+    ansible_u: ansible
+    kafka_u: kafka
+    default_password: $6$MK4kULUtU1ME71TH$m3FeQe0drrwttOHG1c9Bg0uyJ/OFzAbVzi7QG65dgaeSAPJeha/fBo2buts1uEJCqbdEY1HlbYCAEH7UKRqDY1
+    ssh_key_filename: cars_rsa
+
+  tasks:
+    
+    - name: Update the /etc/hosts
+      template: 
+        src: etchosts.j2 
+        dest: /etc/hosts
+
+    - name: Create /etc/environment
+      template:
+        src:  environment.j2
+        dest: /etc/environment        
+
+    - name: Create user ansible
+      user:
+        name: "{{ ansible_u }}"
+        password: "{{ default_password }}"
+        group: wheel
+
+    - name: Create user kafka
+      user:
+        name: "{{ kafka_u }}"
+        password: "{{ default_password }}"
+        group: wheel 
+
+    - name: Allow wheel group to have passwordless sudo
+      lineinfile:
+       dest: /etc/sudoers
+       state: present
+       regexp: '^%wheel'
+       line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+
+    - name: Add user ansible to sudo
+      lineinfile:
+       path: /etc/sudoers.d/ansible
+       line: 'ansible ALL=(ALL) NOPASSWD: ALL'
+       state: present
+       mode: 0440
+       create: yes
+       validate: 'visudo -cf %s'     
+
+    - name: Add user kafka to sudo
+      lineinfile:
+       path: /etc/sudoers.d/kafka
+       line: 'kafka ALL=(ALL) NOPASSWD: ALL'
+       state: present
+       mode: 0440
+       create: yes
+       validate: 'visudo -cf %s'    
+
+    - name: sshd configuration file update
+      template: src=sshd_config.j2
+       dest=/etc/ssh/sshd_config
+       backup=yes
+       owner=0 group=0 mode=0644
+       validate='/usr/sbin/sshd -T -f %s'
+
+    - name: Restart sshd
+      service:
+       name: sshd
+       state: restarted
+
+    - name: Create ssh dir ansible
+      file:
+        path: "~{{ ansible_u }}/.ssh"
+        state: directory
+        owner: "{{ ansible_u }}"
+        mode: 0700
+
+    - name: Create ssh dir kafka
+      file:
+        path: "~{{ kafka_u }}/.ssh"
+        state: directory
+        owner: "{{ kafka_u }}"
+        mode: 0700
+
+    - name: create the ~/.ssh/config file for ansible
+      file:
+        path: "~{{ ansible_u }}/.ssh/config"
+        state: touch
+        mode: 0644
+
+    - name: create the ~/.ssh/config file for kafka
+      file:
+        path: "~{{ ansible_u }}/.ssh/config"
+        state: touch
+        mode: 0644
+   
+    # Do not delete this command line, it needs to be manually executed before continuation!
+    # This is a future code improvement
+    # name: generate the rsa key on local machine    
+    # generate a key manual 
+    # ssh-keygen -t rsa
+    # cars_rsa   
+
+    - name: copy the cars_rsa.pub
+      copy:
+        src: /Users/koenvantomme/.ssh/cars_rsa.pub
+        dest: ~{{ ansible_u }}/.ssh/cars_rsa.pub
+        owner: ansible
+        group: wheel
+        mode: 0644
+
+    - name: copy the cars_rsa
+      copy:
+        src: /Users/koenvantomme/.ssh/cars_rsa
+        dest: ~{{ ansible_u }}/.ssh/cars_rsa
+        owner: ansible
+        group: wheel
+        mode: 0600         
+
+    - name: Add the new ssh key to the ~/.ssh/config file ansible
+      lineinfile:
+        path: "~{{ ansible_u }}/.ssh/config"
+        line: "IdentityFile ~{{ ansible_u }}/.ssh/{{ssh_key_filename}}"
+        state: present
+
+  
+      
